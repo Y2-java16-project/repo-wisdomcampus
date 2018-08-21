@@ -20,10 +20,7 @@ public class GoodsController {
 	
 	@GetMapping("/index")
 	public String index(Model model) {
-		List<Goods> goods = this.goodsService.selectAll();
-		System.err.println(goods.size());
-		//传值到页面
-		model.addAttribute("goods", goods);
+		
 		//转发
 		return "goods-index.html";
 	}

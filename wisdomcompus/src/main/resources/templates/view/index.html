@@ -372,7 +372,22 @@
 	                		<!--彭蓓英、刘亿-->
 	                		<a href="#" class="dropdown-toggle"><i class="icon-cogs"></i><span class="menu-text"> 综合测评 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu">
-
+								 <li  class="home"><a onclick="attrOne(this)" href="/LY-PBY/Personal_evaluation.html"  target="iframe" title="个人评测"  class="iframeurl"><i class="icon-double-angle-right"></i>个人评测</a></li>
+								<li  class="home"><a onclick="attrOne(this)" href="/LY-PBY/teacher_evaluation.html" target="iframe" title="老师评测"  class="iframeurl"><i class="icon-double-angle-right"></i>老师评测</a></li>
+			                   <script>
+			                    	function attrOne(th){
+			                    		console。info(th);
+			                    		
+			                    		$.post("tobbb",{},function(data){
+			                    			alert("我媳妇是脑瘫");
+			                    			alert(stringify(data1));
+			                    			new Vue({
+			                    				  el: '#app',
+			                    				  data:data1
+			                    				})
+			                    		})
+			                    	}
+			                    </script>
 							</ul>
 						</li>
 					</ul>

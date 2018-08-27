@@ -31,6 +31,6 @@ public class GoodsController {
 	
 	@GetMapping("/toIndex")
 	public String toIndex(Model model) {
-		return "view/index.html";
+		return "view/Wsituation.html";
 	}
 }

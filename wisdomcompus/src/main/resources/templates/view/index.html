@@ -22,6 +22,7 @@
     <script src="../../assets/layer/layer.js" type="text/javascript"></script>
 	<script src="../../assets/laydate/laydate.js" type="text/javascript"></script>
     <script src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="../../js/vue.min.js"></script>
         
 	<script type="text/javascript">	
 		$(function(){ 
@@ -372,26 +373,31 @@
 	                		<!--彭蓓英、刘亿-->
 	                		<a href="#" class="dropdown-toggle"><i class="icon-cogs"></i><span class="menu-text"> 综合测评 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu">
-								 <li  class="home"><a onclick="attrOne(this)" href="/LY-PBY/Personal_evaluation.html"  target="iframe" title="个人评测"  class="iframeurl"><i class="icon-double-angle-right"></i>个人评测</a></li>
+								 <li class="home"><a onclick="attrOne(this)" href="/LY-PBY/Personal_evaluation.html"  target="iframe" title="个人评测"  class="iframeurl"><i class="icon-double-angle-right"></i>个人评测</a></li>
 								<li  class="home"><a onclick="attrOne(this)" href="/LY-PBY/teacher_evaluation.html" target="iframe" title="老师评测"  class="iframeurl"><i class="icon-double-angle-right"></i>老师评测</a></li>
+			               		
 			                   <script>
 			                    	function attrOne(th){
-			                    		console。info(th);
+			                    		console.info(th);
 			                    		
-			                    		$.post("tobbb",{},function(data){
-			                    			alert("我媳妇是脑瘫");
-			                    			alert(stringify(data1));
-			                    			new Vue({
-			                    				  el: '#app',
-			                    				  data:data1
+			                    		$.post("tobbb",{},function(data1){
+			                    			alert("我媳妇是大美女");
+			                    			alert(JSON.stringify(data1));
+			                    			var app6 = new Vue({
+			                    				  el: '#app-6',
+			                    				  data: {
+			                    					    message: JSON.stringify(data1)
+			                    				  }
 			                    				})
 			                    		})
 			                    	}
+			                    	
 			                    </script>
 							</ul>
 						</li>
 					</ul>
 				</div>
+
 				<script type="text/javascript">
 		           $("#menu_style").niceScroll({  
 			        cursorcolor:"#888888",  

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.pojo.Goods;
 import com.example.demo.service.GoodsService;
@@ -36,8 +37,9 @@ public class GoodsController {
 	}
 	
 	@PostMapping("/tobbb")
+	@ResponseBody
 	public String tobbb() {
-		System.out.println("傻逼的世界");
-		return "{user : 'sb',passwrod : 123456}";
+		System.out.println("可爱的一家人");
+		return "{user:'sb',passwrod:123456}";
 	} 
 }

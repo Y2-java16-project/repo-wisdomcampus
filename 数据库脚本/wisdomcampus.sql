@@ -92,17 +92,16 @@ insert  into `course`(`courseId`,`semesterId`,`simpleName`,`fullName`,`parentId`
 DROP TABLE IF EXISTS `exam`;
 
 CREATE TABLE `exam` (
-  `examid` int(11) NOT NULL AUTO_INCREMENT,
-  `modelid` int(11) NOT NULL,
-  `examname` varchar(50) NOT NULL,
-  `topicscore` double NOT NULL,
-  `author` int(11) NOT NULL,
-  `begindate` datetime NOT NULL,
-  `enddate` datetime NOT NULL,
-  `actorclass` int(11) NOT NULL,
-  `extrastudent` int(11) DEFAULT NULL,
-  `createdate` datetime NOT NULL,
-  `subjectids` varchar(100) DEFAULT NULL,
+  `examid` int(11) NOT NULL AUTO_INCREMENT COMMENT '考试id',
+  `modelid` int(11) NOT NULL COMMENT '模板id',
+  `examname` varchar(50) NOT NULL COMMENT '考试名称',
+  `author` varchar(20) NOT NULL COMMENT '出卷人',
+  `begindate` datetime NOT NULL COMMENT '开考时间',
+  `enddate` datetime NOT NULL COMMENT '规定交卷时间',
+  `actorclass` varchar(100) NOT NULL COMMENT '规定考试班级(字符串拼接)',
+  `extrastudent` varchar(100) DEFAULT NULL COMMENT '额外参考学生(字符串拼接)',
+  `createdate` datetime NOT NULL COMMENT '出卷时间',
+  `subjectids` varchar(100) DEFAULT NULL COMMENT '题目编号(字符串拼接)',
   PRIMARY KEY (`examid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,29 +145,35 @@ insert  into `knowledgepoint`(`knowledgePointId`,`knowledgePointName`,`chapterId
 DROP TABLE IF EXISTS `model`;
 
 CREATE TABLE `model` (
-  `modelid` int(11) NOT NULL AUTO_INCREMENT,
-  `modelname` varchar(50) NOT NULL,
-  `topicscore` double NOT NULL,
-  `createdate` datetime DEFAULT NULL,
-  `author` int(11) NOT NULL,
+  `modelid` int(11) NOT NULL AUTO_INCREMENT COMMENT '模板表主键',
+  `modelname` varchar(50) NOT NULL COMMENT '模板名称',
+  `topicscore` double NOT NULL COMMENT '每题分数',
+  `createdate` datetime DEFAULT NULL COMMENT '模板创建时间',
+  `author` varchar(20) NOT NULL COMMENT '创建人',
+  `usenum` int(11) DEFAULT '0' COMMENT '使用次数',
+  `state` int(11) DEFAULT '0' COMMENT '1,禁用;0,可用',
   PRIMARY KEY (`modelid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 /*Data for the table `model` */
+
+insert  into `model`(`modelid`,`modelname`,`topicscore`,`createdate`,`author`,`usenum`,`state`) values (2,'月考1-马老C',5,'2018-08-31 15:57:02','201808001',0,0),(3,'神魔咧',1,'2018-09-01 01:30:46','201808001',0,0),(4,'恐怖悬疑:我的黑切呢',2,'2018-09-01 01:32:38','201808001',0,0),(5,'走位,走位',2,'2018-09-01 01:33:35','201808001',0,0),(6,'幽梦开起来',3,'2018-09-01 01:47:15','201808001',0,0),(7,'小伙子,有点皮欧',2,'2018-09-01 01:47:33','201808002',0,0),(8,'怎么说',2,'2018-09-01 01:48:17','201808001',0,0),(9,'这个逼至少钻石',2,'2018-09-01 09:39:57','201808001',0,0),(10,'111',5,'2018-09-01 15:21:05','201808003',0,0),(11,'可笑可笑',5,'2018-09-01 15:29:14','201808002',0,0),(12,'666',1,'2018-09-01 15:51:08','201808003',0,0),(13,'777',1,'2018-09-01 15:52:18','201808003',0,0),(14,'888',2,'2018-09-01 15:53:23','201808003',0,0),(15,'气死',2,'2018-09-01 15:56:38','201808003',0,0),(16,'cs',1,'2018-09-01 16:04:53','201808003',0,0),(17,'css',1,'2018-09-01 16:05:30','201808003',0,0),(18,'csss',1,'2018-09-01 16:05:58','201808003',0,0),(19,'kwy',1,'2018-09-01 16:12:42','201808003',0,0),(20,'六一',1,'2018-09-03 17:22:33','201808001',0,0),(21,'9月3号',2,'2018-09-03 17:25:32','201808001',0,0);
 
 /*Table structure for table `modeldetails` */
 
 DROP TABLE IF EXISTS `modeldetails`;
 
 CREATE TABLE `modeldetails` (
-  `modeldetailsid` int(11) NOT NULL AUTO_INCREMENT,
-  `modelid` int(11) NOT NULL,
-  `pointid` int(11) NOT NULL,
-  `topicnum` int(11) NOT NULL,
+  `modeldetailsid` int(11) NOT NULL AUTO_INCREMENT COMMENT '模板详情主键',
+  `modelid` int(11) NOT NULL COMMENT '模板id',
+  `pointid` int(11) NOT NULL COMMENT '知识点id',
+  `topicnum` int(11) NOT NULL COMMENT '题目数量',
   PRIMARY KEY (`modeldetailsid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 /*Data for the table `modeldetails` */
+
+insert  into `modeldetails`(`modeldetailsid`,`modelid`,`pointid`,`topicnum`) values (1,2,1,5),(2,2,2,5),(3,3,9,50),(4,4,11,20),(5,5,13,10),(6,6,13,3),(7,7,15,5),(8,8,10,3),(9,9,8,5),(10,10,2,6),(11,10,9,5),(12,11,5,2),(13,12,2,1),(14,13,8,3),(15,14,11,1),(16,15,2,1),(17,16,3,1),(18,17,11,1),(19,18,11,1),(20,19,11,1),(21,20,4,2),(22,20,9,2),(23,21,11,2);
 
 /*Table structure for table `role` */
 
@@ -220,11 +225,11 @@ insert  into `semester`(`semesterId`,`semesterName`) values (1,'S1'),(2,'S2'),(3
 DROP TABLE IF EXISTS `studentexam`;
 
 CREATE TABLE `studentexam` (
-  `studentexamid` int(11) NOT NULL AUTO_INCREMENT,
-  `examid` int(11) NOT NULL,
-  `studentid` int(11) NOT NULL,
-  `okdate` datetime DEFAULT NULL,
-  `score` double DEFAULT NULL,
+  `studentexamid` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生考试表主键',
+  `examid` int(11) NOT NULL COMMENT '考试id',
+  `studentid` varchar(20) NOT NULL COMMENT '学生id',
+  `okdate` datetime DEFAULT NULL COMMENT '交卷时间',
+  `score` double DEFAULT NULL COMMENT '分数',
   PRIMARY KEY (`studentexamid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -235,11 +240,11 @@ CREATE TABLE `studentexam` (
 DROP TABLE IF EXISTS `studentexamdetails`;
 
 CREATE TABLE `studentexamdetails` (
-  `studentexamdetailsid` int(11) NOT NULL AUTO_INCREMENT,
-  `studentexamid` int(11) NOT NULL,
-  `subjectid` int(11) DEFAULT NULL,
-  `key` varchar(10) DEFAULT NULL,
-  `correctboolean` int(11) DEFAULT NULL,
+  `studentexamdetailsid` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生考试详情表主键',
+  `studentexamid` int(11) NOT NULL COMMENT '学生考试id',
+  `subjectid` int(11) DEFAULT NULL COMMENT '题目id',
+  `key` varchar(10) DEFAULT NULL COMMENT '学生答题选项',
+  `correctboolean` int(11) DEFAULT NULL COMMENT '是否正确',
   PRIMARY KEY (`studentexamdetailsid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -303,6 +308,8 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
+
+insert  into `user`(`userId`,`userName`,`password`,`userType`,`classId`,`roleId`,`sex`,`identityCard`,`phone`,`address`,`inDate`,`outDate`,`description`,`pic`,`userState`) values ('201808001','马老C','123456',1,NULL,NULL,'男','430223199809103511','17752780946','株洲',NULL,NULL,NULL,NULL,NULL),('201808002','皮皮猪','123456',1,NULL,NULL,'男','430223199809103512','17752780947',NULL,NULL,NULL,NULL,NULL,NULL),('201808003','卢本伟','123456',1,NULL,NULL,'男','430223199809103513','17752780948',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

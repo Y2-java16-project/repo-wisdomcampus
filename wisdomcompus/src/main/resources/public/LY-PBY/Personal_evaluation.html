@@ -5,17 +5,20 @@
 		<title>个人评测</title>
 	</head>
 	<!-- BootStrap -->
+		<script src="../../pby/js/jquery-1.9.1.min.js">	</script>
 		<script src="../../pby/js/bootstrap.min.js" ></script>
 		<link href="../../pby/css/pby-css/bootstrap.min.css" rel="stylesheet">
 		<script src="../../pby/js/echarts.js"></script>
 		<script src="../../pby/myjs/myecharts.js"></script>
 		<link href="../../pby/myjs/pinghua.css" rel="stylesheet" />
-		<script src="../../pby/js/jquery-1.9.1.min.js">	</script>
 		<link href="../../pby/myjs/chidao.css" rel="stylesheet"/>
 		<link rel="stylesheet" type="text/css" href="../../pby/myjs/simple-calendar.css">
 		<script type="text/javascript" src="../../pby/myjs/simple-calendar.js"></script>
 		<script type="text/javascript" src="../../pby/myjs/vue.min.js"></script>
 		<script type="text/javascript" src="../../pby/myjs/myvue.js"></script>
+		<script type="text/javascript" src="../../pby/js/axios.min.js"></script>
+		<!-- ajax vue台套用法 -->
+		<!-- vue-resource-1.5.1.js这个淘汰 -->
 	<style type="text/css">
 	
 		
@@ -59,25 +62,25 @@
         	<div class="content-one" id="mk01">
         		<div class="content_left">
 					<h3>个人信息</h3>  
-					<div class="person">
+					<div class="person" id="onePreson">
 						<div class="person_one"><img src="../../pby/img/head-three.jpg"></div>
 						<div class="person_two">
 							<table>
 								<tr>
 									<td class="td-style">姓名：</td>
-									<td>刘亿同志</td>
+									<td>{{data.userName}}</td>
 								</tr>
 								<tr>
-									<td class="td-style">年龄：</td>
-									<td>22</td>
+									<td class="td-style">年龄：88</td>
+									<td></td>
 								</tr>
 								<tr>
 									<td class="td-style">用户类型：</td>
-									<td>超级管理员</td>
+									<td></td>
 								</tr>
 								<tr>
 									<td class="td-style">姓名：</td>
-									<td>刘亿同志</td>
+									<td></td>
 								</tr>
 								<tr>
 									<td class="td-style">年龄：</td>
@@ -89,7 +92,8 @@
 								</tr>
 							</table>
 						</div>
-						<div v-on:click='wan'>点击</div>
+						<!-- 这个方法无效 -->
+						<!-- <div v-on:click='wan'>点击</div> -->
 					</div>
         		</div>
         		<div class="content_right">
@@ -223,7 +227,7 @@
 		<!-- <script src="js/bootstrap.min.js" ></script> -->
 		
 		<script>
-			
+		
 			
 			// 基于准备好的dom，初始化echarts实例
 			var myChartPie = echarts.init(document.getElementById('pies'));
@@ -324,29 +328,30 @@
 
   			], 3))
   			*/
-			 
+  			 
 			 //此方法不适合3.1.1
 			 //平滑效果
 			 $(function(){
-				$('a[href*=#],area[href*=#]').click(function() {
-                console.log(this.pathname)
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                    var $target = $(this.hash);
-                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
-                    if ($target.length) {
-                        var targetOffset = $target.offset().top;
-                        $('html,body').animate({
-                                    scrollTop: targetOffset
-                                },
-                                1000);
-                        return false;
-                    }
-                }
-            });
-
+					$('a[href*=#],area[href*=#]').click(function() {
+	                console.log(this.pathname)
+	                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+	                    var $target = $(this.hash);
+	                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+	                    if ($target.length) {
+	                        var targetOffset = $target.offset().top;
+	                        $('html,body').animate({
+	                                    scrollTop: targetOffset
+	                                },
+	                                1000);
+	                        return false;
+	                    }
+	                }
+	            });
 			})
+
+			   
 			
-			function showBar(){
+			 function showBar(){
 				option = {
 				    legend: {},
 				    tooltip: {},
@@ -369,7 +374,11 @@
 				        {type: 'bar'}
 				    ]
 				};
-			}
+			} 
+			
+			  //显示个人信息
+			 
+        
 		</script>
 	</body>
 </html>

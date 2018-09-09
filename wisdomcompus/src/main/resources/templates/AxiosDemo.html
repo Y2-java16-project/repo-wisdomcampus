@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>发送AJAX请求</title>
+    <script src="../pby/myjs/vue.min.js"></script>
+    <script src="../pby/js/axios.min.js"></script>
+    <script>
+    //https://www.cnblogs.com/Juphy/p/7073027.html
+    //https://blog.csdn.net/binginsist/article/details/65630547
+    //中文文档
+    //https://www.kancloud.cn/yunye/axios/234845
+    //get请求
+        window.onload=function(){
+            new Vue({
+                el:'#itany',
+                //一般的是data:
+                data(){
+					 return {
+						 //https://blog.csdn.net/cyyjm/article/details/80278799
+						 //可以放多个
+	                    user:{
+	                        userName:'alice'
+	                    }
+					 }
+                },
+                methods:{
+                	//get请求方式一
+                    send(){
+                        axios({
+                            method:'get',
+                            url:'/user/selectUser'
+                            	//请求数据拼接
+                        }).then(function(resp){
+                            console.log(resp.data);
+                        }).catch(resp => {
+                            console.log('请求失败：'+resp.status+','+resp.statusText);
+                        });
+                    },
+                    //get请求方式二
+                     sendGet(){
+                        axios.get('/user/selectUser',{
+                            params:{
+                            	//请求数据
+                            }
+                        })
+                        .then(resp => {
+                            console.log(resp.data);
+                        }).catch(err => {             //
+                            console.log('请求失败：'+err.status+','+err.statusText);
+                        });
+                    }, 
+                    //post请求
+                    sendPost(){
+                    	console.info(this)
+                    	//获取当前vue
+                    	var self = this;
+	                    axios.post('/user/selectUser', {
+	                        //请求数据
+	                        
+	                      })
+	                      .then(function (response) {
+	                    	console.info(self.user)
+	                    	//AJAX返回的数据
+	                    	console.info(response.data)
+	                    	//赋值  因为vue是一个动态的前端框架
+	                    	//动态是指数据改变所有数据全部改变
+	                    	self.user=response.data;
+	                    	//response是什么东西
+	                        console.log(response);
+	                      })
+	                      .catch(function (response) {
+	                        console.log(response);
+	                      });
+                    },
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <div id="itany">
+    <div >{{user.userName}}</div>
+        <button @click="send">发送AJAX请求</button>
+
+        <button @click="sendGet">GET方式发送AJAX请求</button>
+
+ 		<button @click="sendPost">POST方式发送AJAX请求</button>
+    </div>
+</body>
+</html>

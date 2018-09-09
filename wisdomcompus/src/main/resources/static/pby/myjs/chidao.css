@@ -1,0 +1,197 @@
+	body{
+			padding: 0;
+			margin: 0;
+			background-color: #F1F1F1;
+		}
+		.a_head{
+			border: 1px solid #F7ECF2;
+			width: 100%;
+			margin: auto;
+			height: 65px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.a_icon{
+			width: 40px;
+			height: 40px;
+			margin-top: 12px;
+			float: left;
+		}
+		.a_icon>span{
+			width: 40px;
+			height: 40px;
+			font-size: 40px;
+			color: #f75757;
+		}
+		.a_search{
+			width: 400px;
+			height: 35px;
+			/*border: 1px solid red;*/
+			margin: auto;
+			margin-top: 12px;
+
+		}
+		.a_search>input{
+			padding-left: 10px;
+			border-bottom: 1px solid gainsboro;
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			outline: none;
+			line-height: 30px;
+		}
+		.btn-search{
+			width: 70px;
+			height: 35px;
+			line-height: 35px;
+			align-items: center;
+			border-radius: 5px;
+			border: 0;
+			color: white;
+			background-color: #f75757;
+			outline: none;
+		}
+		.content-one{
+			width: 100%;
+			height: 400px;
+			margin: auto;
+			margin-top: 15px;
+			display: flex;
+			justify-content: space-between;
+		}
+		.content_left{
+			width: 43.5%;
+			height: 400px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.content_right{
+			width: 55%;
+			height: 400px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.content-two{
+			width: 100%;
+			height: 450px;
+			margin: auto;
+			margin-top: 15px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.content-three{
+			width: 100%;
+			height: 450px;
+			margin: auto;
+			margin-top: 15px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.content-four{
+			width: 100%;
+			height: 400px;
+			margin: auto;
+			margin-top: 15px;
+			display: flex;
+			justify-content: space-between;			
+		}
+		.fout_left{
+			width:32%;
+			height: 400px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.fout_center{
+			width:32%;
+			height: 400px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.fout_right{
+			width:32%;
+			height: 400px;
+			background-color: white;
+			box-shadow:0px 5px  10px 0px #DADADA;
+		}
+		.foot{
+			margin: auto;
+			margin-top: 15px;
+			width: 100%;
+			height: 50px;
+			background-color: #151414;
+			text-align: center;
+			color: white;
+			padding-top: 18px;
+		}
+		
+		li{
+			list-style: none;
+		}
+		
+		#statisticsTitle>ul {
+			display: flex;
+			justify-content: center;
+		}
+	
+		.clearfix {
+			display: flex;
+			justify-content: space-between;
+			
+		}
+		
+		h2{
+			text-align: center;
+		}
+	
+		.content_left div{
+			/*border: 1px solid black;*/
+		}
+		.person{
+			height: 40%;
+			display: flex;
+			justify-content: space-between;
+			/*border: 2px solid orangered;*/
+		}
+		.person_one{
+			width: 120px;
+			height: 120px;
+			margin-top: 20px;
+			margin-left: 20px;
+			border-radius: 50%;
+		}
+		.person_one>img{
+			width: 120px;
+			height: 120px;
+			border-radius: 50%;
+		}
+		.person_two{
+			width: 60%;
+			height: 100%;
+			/*border: 1px solid red;*/
+		}		
+		.td-style{
+			width: 80px;
+			text-align: left;
+		}
+		h3{
+			padding-left: 20px;
+		}
+		
+		.a-dateInfo{
+			overflow: hidden;
+			clear: both;
+			margin-top: 370px;
+			display: flex;
+			justify-content: center;
+			line-height: 20px;
+		}
+		.a-dateInfo label{
+			line-height: 20px;
+			margin-top: 5px;
+			margin-left: 10px;
+		}
+		.data-one{
+			width:30px;
+			height: 20px;
+			margin-top: 5px;
+		}

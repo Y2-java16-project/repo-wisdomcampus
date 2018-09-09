@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!--comment-->
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.pby.UserMapper">
+	<resultMap type="com.example.demo.pojo.pby.User" id="my01">
+		<id column="userId" property="userId"/>
+		<result column="userName" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="userType" property="userType"/>
+		<result column="classId" property="classId"/>
+		<result column="roleId" property="roleId"/>
+		<result column="sex" property="sex"/>
+		<result column="identityCard" property="identityCard"/>
+		<result column="phone" property="phone"/>
+		<result column="address" property="address"/>
+		<result column="inDate" property="inDate"/>
+		<result column="outDate" property="outDate"/>
+		<result column="description" property="description"/>
+		<result column="pic" property="pic"/>
+		<result column="userState" property="userState"/>
+		<result column="img" property="img"/>
+		<!-- 
+			column - JavaBean中的属性 ， ofType 类型 这里是 list 集合 但是使用的是 studentexam 
+			在这里 mybatis自动的将 studentexam 进行了封装成 list
+		 -->
+		<collection property="studentexams" ofType="com.example.demo.pojo.pby.Studentexam">
+			<id column="studentexamid" property="studentexamid"/>
+			<result column="examid" property="examid"/>
+			<result column="studentid" property="studentid"/>
+			<result column="okdate" property="okdate"/>
+			<result column="score" property="score"/>
+		</collection>
+	</resultMap>
+
+	<select id="selectUser" resultType="com.example.demo.pojo.pby.User">
+		SELECT * FROM `user` WHERE `userId`=#{userId};
+	</select>
+	
+	<!-- 查询当前学生的考试成绩 -->
+	<select id="selectStudentexamAll" resultMap="my01">
+		<!-- 默认为升序 使用desc为降序 -->
+		SELECT * FROM `user` u 
+		LEFT JOIN studentexam s
+		ON u.`userId` = s.`studentid`
+		WHERE u.`userId`= #{userId}
+		ORDER BY s.okdate DESC
+	</select>
+</mapper>

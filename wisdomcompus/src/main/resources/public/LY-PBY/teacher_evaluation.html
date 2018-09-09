@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>老师评测</title>
+	</head>
+	<script type="text/javascript" src="../../pby/myjs/vue.min.js"></script>
+	<script src="../../pby/js/jquery-1.9.1.min.js">	</script>
+	<script type="text/javascript" src="../../pby/myjs/ajaxfileupload.js"></script>
+	
+	<body>
+		<h2>老师评测</h2>
+		<!-- <form method="post" action="/file/upload" autocomplete="on" enctype="multipart/form-data" id="file_upload">
+		　　<p>图片预览：</p>
+		　　<div id="test-image-preview"></div>
+		　　<p>
+		　　　　<input type="file" id="test-image-file" name="test" accept="image/gif, image/jpeg, image/png, image/jpg">
+			   <input type="submit" value="提交">　　
+		</p>
+		   <p id="test-file-info"></p>
+		</form> -->
+		
+		 <h2>上传文件sss</h2>
+	    <form action="/file/upload" method="post" id="sb" enctype="multipart/form-data" >
+	        <input  type="file" name="myfile" method="post" action="localfile/upload"/><br>
+	        <<input type="submit" value="提交"/>
+	 
+	        <!-- <input type="file" name="myfile" id="myfile" multiple="multiple"/><br/>
+	        <input v-on:click="fileupload" type="button" value="提交"/> -->
+	 		
+	    </form>
+	    <script type="text/javascript">
+	    new Vue({
+		    	el:"#sb",
+		    	methods:{
+		    		fileupload:function(){
+		    			alert($("[name=myfile]").val());
+		    		    $("#submitId").on("click",function () {
+		    		        $.ajaxFileUpload({
+		    		            url:'/file/upload', //你处理上传文件的服务端
+		    		            type:"post",
+		    		            secureuri:false,	//是否启用安全机制
+		    		            fileElementId:'myfile',//file的id
+		    		            dataType: 'json',//返回的类型
+		    		            //data:{myfile:$("[name=myfile]").val()},
+		    		            success: function (data, status) {//调用成功时怎么处理
+		    		              alert("上传成功");
+		    		            },
+		    		            error:function(data, status, e){
+		    		            	alert("上传失败");
+		    		            }
+		    		        });
+		    		    });
+		    		}
+		    	}
+		    })
+	    </script>
+	    
+	    <h1>文件下载</h1>
+	    <a href="/file/download">下载</a>
+	    <div>
+	    	<img src="">
+	    </div>
+	</body>
+</html>

@@ -6,6 +6,7 @@
 	</head>
 	<!-- BootStrap -->
 		<script src="../../pby/js/jquery-1.9.1.min.js">	</script>
+		
 		<script src="../../pby/js/bootstrap.min.js" ></script>
 		<link href="../../pby/css/pby-css/bootstrap.min.css" rel="stylesheet">
 		<script src="../../pby/js/echarts.js"></script>
@@ -17,6 +18,11 @@
 		<script type="text/javascript" src="../../pby/myjs/vue.min.js"></script>
 		<script type="text/javascript" src="../../pby/myjs/myvue.js"></script>
 		<script type="text/javascript" src="../../pby/js/axios.min.js"></script>
+		
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<!-- 添加样式 -->
+		<!-- https://www.cnblogs.com/shiy/p/6650717.html -->
+		<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 		<!-- ajax vue台套用法 -->
 		<!-- vue-resource-1.5.1.js这个淘汰 -->
 	<style type="text/css">
@@ -26,13 +32,13 @@
 	<body>
 		<!--
             	固定的东西
-            -->
+        -->
         	<div class="evt_nav_right" style="visibility: visible;">
 		        <a ytag="20054" href="#mk01" class="evt_link1" title="老乔经典">个人信息</a>
 		        <a ytag="20055" href="#mk02" class="evt_link2" title="实时爆款">到勤情况</a>
 		        <a ytag="20056" href="#mk03" class="evt_link3" title="热销推荐">考试情况</a>
-		        <a ytag="20057" href="#mk04" class="evt_link4" title="主流配件">p与y的小家</a>
-		        <a ytag="20058" href="#mk01" class="evt_link5" title="更多活动">返回头部</a>
+		        <a ytag="20057" href="#mk04" class="evt_link4" title="主流配件">请假情况</a>
+		        <a ytag="20058" href="#mk05" class="evt_link5" title="更多活动">返回头部</a>
 		        <a ytag="20059" href="javascript:void(0);" class="evt_link0" title="返回顶部">
 		            
 		        </a>
@@ -43,7 +49,7 @@
         	描述：头部
         -->
 		<header>
-			<div class="a_head container">
+			<div class="a_head">
 				<div class="a_icon">
 					<span class="glyphicon glyphicon-list-alt"></span>
 				</div>
@@ -63,32 +69,32 @@
         		<div class="content_left">
 					<h3>个人信息</h3>  
 					<div class="person" id="onePreson">
-						<div class="person_one"><img src="../../pby/img/head-three.jpg"></div>
+						<div class="person_one"><img v-bind:src="imgUrl"></div>
 						<div class="person_two">
 							<table>
 								<tr>
-									<td class="td-style">姓名：</td>
-									<td>{{data.userName}}</td>
+									<td class="td-style">用户ID：</td>
+									<td>{{user[0].userId}}</td>
 								</tr>
 								<tr>
-									<td class="td-style">年龄：88</td>
-									<td></td>
+									<td class="td-style">姓名：</td>
+									<td>{{user[0].userName}}</td>
+								</tr>
+								<tr>
+									<td class="td-style">性别：</td>
+									<td>{{user[0].sex}}</td>
 								</tr>
 								<tr>
 									<td class="td-style">用户类型：</td>
-									<td></td>
+									<td>{{user[0].userType}}</td>
 								</tr>
 								<tr>
-									<td class="td-style">姓名：</td>
-									<td></td>
+									<td class="td-style">联系方式：</td>
+									<td>{{user[0].phone}}</td>
 								</tr>
 								<tr>
-									<td class="td-style">年龄：</td>
-									<td>22</td>
-								</tr>
-								<tr>
-									<td class="td-style">职业：</td>
-									<td>超级管理员</td>
+									<td class="td-style">地址：</td>
+									<td>{{user[0].address}}</td>
 								</tr>
 							</table>
 						</div>
@@ -203,10 +209,22 @@
 
         	</div>
         	
+        	<!-- 迟到 -->
         	<div class="content-three" id="mk03">
-        		
+        		<div>
+        			<button type="button" class="btn btn-warning" v-on:click="Toggles">折线图</button>
+        		</div>
+        		<div v-show="ok">
+        			<div id="kaoshitongji"  style="width: 100%;height:350px;">考试拥挤</div>
+        		</div>
         	</div>
+        	
         	<div class="content-four" id="mk04">
+        		<p>12312</p>
+        		<div>123123<input value="折线图"></div>
+        		<div ></div>
+        	</div>
+        	<div class="content-four" id="mk05">
         		<div class="fout_left"></div>
         		<div class="fout_center"></div>
         		<div class="fout_right"></div>
@@ -227,12 +245,28 @@
 		<!-- <script src="js/bootstrap.min.js" ></script> -->
 		
 		<script>
-		
+		var mm = new Vue({
+			el:"#mk03",
+			data(){
+				return{
+						ok:false
+					}
+				},
+			methods:{
+				Toggles:function(){
+						alert(333)
+						/* mm.ok=!mm.ok; */
+						this.ok=true;
+					}
+				}
+			})
 			
 			// 基于准备好的dom，初始化echarts实例
 			var myChartPie = echarts.init(document.getElementById('pies'));
 			var myChartLine = echarts.init(document.getElementById('lines')); //拆线图
 			var myChartBar = echarts.init(document.getElementById('bars')) //柱状图
+			//考试统计 
+			var kaoshitongji = echarts.init(document.getElementById('kaoshitongji')); //拆线图
 			//日历
 			//
 			
@@ -315,6 +349,14 @@
 			    ],
 			    [1, 23, 23, 56, 76, 230, 210, 82, 63, 120, 56, 78]
 			], 2))
+			
+			kaoshitongji.setOption(optionType(["",
+			    "",
+			    ['2017年01月', '2017年02月', '2017年03月', '2017年04月', '2017年05月', '2017年06月', '2017年07月',
+			        '2017年08月', '2017年09月', '2017年10月', '2017年11月', '2017年12月'
+			    ],
+			    [1, 23, 23, 56, 76, 230, 210, 82, 63, 120, 56, 78]
+			], 2))
 			//
 			/* myChartBar.setOption(optionType(["",
 			      "管辖内心血管人数", ['道里区1', '南岗区', '道里区14', '道里区1', '道里区5', '道里', '道里7月', '道里8月',
@@ -333,22 +375,88 @@
 			 //平滑效果
 			 $(function(){
 					$('a[href*=#],area[href*=#]').click(function() {
-	                console.log(this.pathname)
-	                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-	                    var $target = $(this.hash);
-	                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
-	                    if ($target.length) {
-	                        var targetOffset = $target.offset().top;
-	                        $('html,body').animate({
-	                                    scrollTop: targetOffset
-	                                },
-	                                1000);
-	                        return false;
-	                    }
-	                }
-	            });
+		                console.log(this.pathname)
+		                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+		                    var $target = $(this.hash);
+		                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+		                    if ($target.length) {
+		                        var targetOffset = $target.offset().top;
+		                        $('html,body').animate({
+		                                    scrollTop: targetOffset
+		                                },
+		                                1000);
+		                        return false;
+		                    }
+		                }
+		            });
+					//加载用户信息
+					loaduser.sendPost();
+					
 			})
 
+			  //加载用户
+			  var loaduser = new Vue({
+		                el:'#onePreson',
+		                //一般的是data:
+		                data(){
+							 return {
+								 //https://blog.csdn.net/cyyjm/article/details/80278799
+								 //可以放多个
+			                    user:[
+			                        {
+			                        	userid:"10011"
+			                        }
+			                    ]
+							 }
+		                },
+		                computed: {
+		                    imgUrl(){
+		                        return '../../pby/'+ this.user[0].img;
+		                    },
+		                },
+		                methods:{
+		                	//post请求
+		                    sendPost(){
+		                    	console.info(this.user[0].userid)
+		                    	//获取当前vue
+		                    	var self = this;
+			                    axios.post('/user/selectStudentexamAll', {
+			                        //请求数据
+			                        userid:this.user[0].userid
+			                      })
+			                      .then(function (response) {
+			                    	//console.info(self.user)
+			                    	//alert(JSON.stringify(response.data))
+			                    	//AJAX返回的数据
+			                    	//console.info(response.data)
+			                    	//赋值  因为vue是一个动态的前端框架
+			                    	//动态是指数据改变所有数据全部改变
+			                    	self.user=response.data;
+			                   		//查询内容 迟到数据
+									//alert(JSON.stringify(self.user))
+			                    	//response是什么东西
+			                        //console.log(response);
+			                      })
+			                      .catch(function (response) {
+			                        console.log(response);
+			                      });
+		                    },
+		                }
+		            });
+			  
+			//考试 
+			 /*  var kaoshitongji = new Vue({
+				  el:"",
+				  data(){
+					  return{
+							  userid:loaduser.user.userid,
+							  kaoshi:{}
+					  }
+				  },
+				  metheds:{
+					  
+				  }
+			  }) */
 			   
 			
 			 function showBar(){

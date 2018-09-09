@@ -24,7 +24,7 @@ public class GoodsController {
 	public String index() {
 		
 		//转发
-		return "NewFile.html";
+		return "AxiosDemo.html";
 	}
 	
 	

@@ -210,11 +210,12 @@
         	</div>
         	
         	<!-- 迟到 -->
-        	<div class="content-three" id="mk03">
-        		<div>
-        			<button type="button" class="btn btn-warning" v-on:click="Toggles">折线图</button>
+        	<div class="content-three">
+        		<div style="">
+       				<button type="button" class="btn btn-warning" onclick="isshow()">折线图</button>
         		</div>
-        		<div v-show="ok">
+        		
+        		<div  id="mk03">
         			<div id="kaoshitongji"  style="width: 100%;height:350px;">考试拥挤</div>
         		</div>
         	</div>
@@ -245,21 +246,6 @@
 		<!-- <script src="js/bootstrap.min.js" ></script> -->
 		
 		<script>
-		var mm = new Vue({
-			el:"#mk03",
-			data(){
-				return{
-						ok:false
-					}
-				},
-			methods:{
-				Toggles:function(){
-						alert(333)
-						/* mm.ok=!mm.ok; */
-						this.ok=true;
-					}
-				}
-			})
 			
 			// 基于准备好的dom，初始化echarts实例
 			var myChartPie = echarts.init(document.getElementById('pies'));
@@ -371,28 +357,9 @@
   			], 3))
   			*/
   			 
-			 //此方法不适合3.1.1
-			 //平滑效果
-			 $(function(){
-					$('a[href*=#],area[href*=#]').click(function() {
-		                console.log(this.pathname)
-		                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-		                    var $target = $(this.hash);
-		                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
-		                    if ($target.length) {
-		                        var targetOffset = $target.offset().top;
-		                        $('html,body').animate({
-		                                    scrollTop: targetOffset
-		                                },
-		                                1000);
-		                        return false;
-		                    }
-		                }
-		            });
-					//加载用户信息
-					loaduser.sendPost();
-					
-			})
+			
+			
+			
 
 			  //加载用户
 			  var loaduser = new Vue({
@@ -484,9 +451,45 @@
 				};
 			} 
 			
+			var isshownumb = 1;
+			//显示迟到折线图
+			function isshow(){
+				alert("世界真好")
+				if(1 === 1){
+					$("kaoshitongji").show;
+					isshownumb = 0;
+				}else{
+					$("kaoshitongji").hide;
+					isshownumb = 1;
+				}
+			}
+			
+			
 			  //显示个人信息
 			 
-        
+         //此方法不适合3.1.1
+			 //平滑效果
+			 $(function(){
+					$('a[href*=#],area[href*=#]').click(function() {
+		                console.log(this.pathname)
+		                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+		                    var $target = $(this.hash);
+		                    $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+		                    if ($target.length) {
+		                        var targetOffset = $target.offset().top;
+		                        $('html,body').animate({
+		                                    scrollTop: targetOffset
+		                                },
+		                                1000);
+		                        return false;
+		                    }
+		                }
+		            });
+					//加载用户信息
+					loaduser.sendPost();
+					
+			})
+			  
 		</script>
 	</body>
 </html>

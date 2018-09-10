@@ -211,11 +211,11 @@
         	
         	<!-- 迟到 -->
         	<div class="content-three">
-        		<div style="">
+        		<div style="float:right;">
        				<button type="button" class="btn btn-warning" onclick="isshow()">折线图</button>
         		</div>
-        		
-        		<div  id="mk03">
+        		<div style="clear:both;"></div>
+        		<div id="mk03">
         			<div id="kaoshitongji"  style="width: 100%;height:350px;">考试拥挤</div>
         		</div>
         	</div>
@@ -451,19 +451,32 @@
 				};
 			} 
 			
-			var isshownumb = 1;
+			//迟到曲线垃圾方法
+			/* var isshownumb = 0;
 			//显示迟到折线图
 			function isshow(){
-				alert("世界真好")
-				if(1 === 1){
-					$("kaoshitongji").show;
+				
+				if(isshownumb){
+					$("#kaoshitongji").show();
 					isshownumb = 0;
 				}else{
-					$("kaoshitongji").hide;
+					$("#kaoshitongji").hide();
 					isshownumb = 1;
 				}
-			}
+			} */
 			
+			//牛逼方法
+			var mm = new Vue({
+				el:"#mk03",
+				data(){
+					return {
+						ok : true
+					}
+				},
+				methods:{
+					
+				}
+			})
 			
 			  //显示个人信息
 			 

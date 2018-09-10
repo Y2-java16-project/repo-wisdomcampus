@@ -211,7 +211,7 @@
         	
         	<!-- 迟到 -->
         	<div class="content-three">
-        		<div style="float:right;">
+        		<div style="float:right;margin-right: 120px">
        				<button type="button" class="btn btn-warning" onclick="isshow()">折线图</button>
         		</div>
         		<div style="clear:both;"></div>
@@ -452,10 +452,9 @@
 			} 
 			
 			//迟到曲线垃圾方法
-		 var isshownumb = 0;
+		 	var isshownumb = 0;
 			//显示迟到折线图
 			function isshow(){
-				
 				if(isshownumb){
 					$("#kaoshitongji").show();
 					isshownumb = 0;
